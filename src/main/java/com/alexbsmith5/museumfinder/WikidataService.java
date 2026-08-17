@@ -18,7 +18,8 @@ public class WikidataService {
                 .build();
     }
 
-    public JsonNode searchByName(String name) {
+    // return highest ranked item identifier from list of fuzzy searched entries
+    public String searchByName(String name) {
         JsonNode rootNode = restClient.get()
                 .uri(uriBuilder -> uriBuilder
                         .path("/w/api.php")
@@ -29,11 +30,10 @@ public class WikidataService {
                         .build())
                 .retrieve()
                 .body(JsonNode.class);
-
         if (rootNode != null) {
-            System.out.println(rootNode.toPrettyString());
+            return rootNode.path("query").path("search").path(0).path("title").asString();
         }
 
-        return rootNode;
+        return "ERROR";
     }
 }

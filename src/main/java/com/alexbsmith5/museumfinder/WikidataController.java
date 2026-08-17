@@ -15,9 +15,9 @@ public class WikidataController {
         this.wikidataService = wikidataService;
     }
 
-    // dump json of wikidata search
+    // fuzzy find text to return item identifier "Q..."
     @GetMapping("/search")
-    public JsonNode searchName(@RequestParam String name) {
+    public String getItemIdentifier(@RequestParam String name) {
         return wikidataService.searchByName(name);
     }
 }
