@@ -20,4 +20,8 @@ public class WikidataController {
     public String getItemIdentifier(@RequestParam String name) {
         return wikidataService.searchByName(name);
     }
+    @GetMapping("/list")
+    public JsonNode listWorks(@RequestParam String itemId) {
+        return wikidataService.getWorks(itemId);
+    }
 }
