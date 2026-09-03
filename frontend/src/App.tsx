@@ -5,7 +5,7 @@ function App() {
   const [items, setItems] = useState([]);
   useEffect(() => {
     axios
-      .get("/list?itemId=Q5593")
+      .get("/api/list?itemId=Q5593")
       .then((response) => {
         setItems(response.data.results.bindings);
       })
