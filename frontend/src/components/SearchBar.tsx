@@ -1,3 +1,5 @@
+import { Input } from "@/components/ui/input";
+
 interface InputProps {
   value: string;
   onChange: (value: string) => void;
@@ -6,7 +8,7 @@ interface InputProps {
 const SearchBar = ({ input, onChange }: InputProps) => {
   return (
     <>
-      <input
+      <Input
         type="text"
         value={input}
         onChange={(e) => onChange(e.target.value)}
