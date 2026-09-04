@@ -5,7 +5,7 @@ interface ListProps {
   searchTerm: string;
 }
 
-function List({ searchTerm }: ListProps) {
+function ListWorks({ searchTerm }: ListProps) {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
@@ -32,4 +32,4 @@ function List({ searchTerm }: ListProps) {
   );
 }
 
-export default List;
+export default ListWorks;

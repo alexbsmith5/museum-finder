@@ -3,7 +3,7 @@ interface InputProps {
   onChange: (value: string) => void;
 }
 
-const Input = ({ input, onChange }: InputProps) => {
+const SearchBar = ({ input, onChange }: InputProps) => {
   return (
     <>
       <input
@@ -16,4 +16,4 @@ const Input = ({ input, onChange }: InputProps) => {
   );
 };
 
-export default Input;
+export default SearchBar;
