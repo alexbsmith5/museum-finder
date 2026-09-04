@@ -1,18 +1,17 @@
-import { useState } from "react";
+interface InputProps {
+  value: string;
+  onChange: (value: string) => void;
+}
 
-const Input = () => {
-  const [input, setInput] = useState("");
-
+const Input = ({ input, onChange }: InputProps) => {
   return (
     <>
-      <h1>Test</h1>
       <input
         type="text"
         value={input}
-        onChange={(e) => setInput(e.target.value)}
-        placeholder="type here..."
+        onChange={(e) => onChange(e.target.value)}
+        placeholder="Type here..."
       />
-      <p>{input}</p>
     </>
   );
 };

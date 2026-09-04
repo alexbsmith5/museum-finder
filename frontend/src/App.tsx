@@ -1,12 +1,14 @@
+import { useState } from "react";
+
 import Input from "./components/Input";
 import List from "./components/List";
 
 function App() {
+  const [searchTerm, setSearchTerm] = useState("");
   return (
     <>
-      <h1>Hello World</h1>
-      <Input />
-      <List searchTerm="Q5593" />
+      <Input onChange={setSearchTerm} />
+      <List searchTerm={searchTerm} />
     </>
   );
 }
