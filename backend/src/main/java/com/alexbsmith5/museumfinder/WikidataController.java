@@ -17,7 +17,7 @@ public class WikidataController {
 
     // fuzzy find text to return item identifier "Q..."
     @GetMapping("/search")
-    public String getItemIdentifier(@RequestParam String name) {
+    public JsonNode getItemIdentifier(@RequestParam String name) {
         return wikidataService.searchByName(name);
     }
     @GetMapping("/list")

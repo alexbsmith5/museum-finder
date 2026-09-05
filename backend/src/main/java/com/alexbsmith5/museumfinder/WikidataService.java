@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 import tools.jackson.databind.JsonNode;
 import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.node.JsonNodeFactory;
 
 import java.io.ByteArrayOutputStream;
 import java.nio.charset.StandardCharsets;
@@ -33,8 +34,8 @@ public class WikidataService {
         this.sparqlRepo.setAdditionalHttpHeaders(Collections.singletonMap("User-Agent", userAgent));
     }
 
-    // return highest ranked item identifier from list of fuzzy searched entries
-    public String searchByName(String name) {
+    // return list of fuzzy searched entries
+    public JsonNode searchByName(String name) {
         JsonNode rootNode = restClient.get()
                 .uri(uriBuilder -> uriBuilder
                         .path("/w/api.php")
@@ -46,9 +47,9 @@ public class WikidataService {
                 .retrieve()
                 .body(JsonNode.class);
         if (rootNode != null) {
-            return rootNode.path("query").path("search").path(0).path("title").asString();
+            return rootNode;
         }
-        return "ERROR";
+        return JsonNodeFactory.instance.objectNode();
     }
 
     public JsonNode getWorks(String itemId) {
