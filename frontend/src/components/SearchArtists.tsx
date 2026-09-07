@@ -12,7 +12,7 @@ function SearchArtists({ searchTerm }: ListProps) {
     axios
       .get(`/api/search?name=${searchTerm}`)
       .then((response) => {
-        setItems(response.data.query.search);
+        setItems(response.data.search);
       })
       .catch((error) => {
         console.error("Error fetching users:", error);
@@ -23,15 +23,12 @@ function SearchArtists({ searchTerm }: ListProps) {
     <>
       <ul>
         {items.map((item) => {
-          const allMatches = item.snippet.replace(/<[^>]+>/g, "").split("\n");
-          const uniqueMatches = [...new Set(allMatches)];
-          const finalSnippet = uniqueMatches.join(", ");
           return (
             <li key={item.title}>
-              <a href={`https://wikidata.org/wiki/${item.title}`}>
-                <p>{item.title}</p>
+              <a href={`https://wikidata.org/wiki/${item.id}`}>
+                <p>{item.label}</p>
               </a>
-              {finalSnippet}
+              {item.description}
             </li>
           );
         })}
