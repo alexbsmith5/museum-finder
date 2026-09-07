@@ -22,7 +22,7 @@ function SearchArtists({ searchTerm }: ListProps) {
   return (
     <>
       <ul>
-        {items.map((item) => {
+        {items?.map((item) => {
           return (
             <li key={item.title}>
               <a href={`https://wikidata.org/wiki/${item.id}`}>
