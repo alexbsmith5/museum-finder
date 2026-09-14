@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Separator } from "@/components/ui/separator";
 
 interface ListProps {
   searchTerm: string;
@@ -21,18 +22,21 @@ function SearchArtists({ searchTerm }: ListProps) {
 
   return (
     <>
-      <ul>
+      <div className="flex flex-col gap-4 text-sm">
         {items?.map((item) => {
           return (
-            <li key={item.title}>
-              <a href={`https://wikidata.org/wiki/${item.id}`}>
-                <p>{item.label}</p>
-              </a>
-              {item.description}
-            </li>
+            <div className="flex flex-col gap-1.5">
+              <div className="leading-none font-medium">
+                <a href={`https://wikidata.org/wiki/${item.id}`}>
+                  <p>{item.label}</p>
+                </a>
+              </div>
+              <div className="text-muted-foreground">{item.description}</div>
+              <Separator />
+            </div>
           );
         })}
-      </ul>
+      </div>
     </>
   );
 }
