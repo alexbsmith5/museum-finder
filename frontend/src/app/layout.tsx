@@ -1,6 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
+import { ModeToggle } from "@/components/theme-toggle";
 import { ThemeProvider } from "@teispace/next-themes";
 import { getTheme } from "@teispace/next-themes/server";
 
@@ -28,6 +28,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
           attribute="class"
           initialTheme={initialTheme ?? undefined}
         >
+          <ModeToggle />
           {children}
         </ThemeProvider>
       </body>
