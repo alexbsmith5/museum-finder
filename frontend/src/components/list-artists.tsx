@@ -1,3 +1,4 @@
+"use client";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Separator } from "@/components/ui/separator";
@@ -6,7 +7,7 @@ interface ListProps {
   searchTerm: string;
 }
 
-function SearchArtists({ searchTerm }: ListProps) {
+function ListArtists({ searchTerm }: ListProps) {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
@@ -25,7 +26,7 @@ function SearchArtists({ searchTerm }: ListProps) {
       <div className="flex flex-col gap-4 text-sm">
         {items?.map((item) => {
           return (
-            <div className="flex flex-col gap-1.5">
+            <div key={item.id} className="flex flex-col gap-1.5">
               <div className="leading-none font-medium">
                 <a href={`https://wikidata.org/wiki/${item.id}`}>
                   <p>{item.label}</p>
@@ -41,4 +42,4 @@ function SearchArtists({ searchTerm }: ListProps) {
   );
 }
 
-export default SearchArtists;
+export default ListArtists;

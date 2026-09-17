@@ -1,4 +1,8 @@
+"use client";
+
+import * as React from "react";
 import { Moon, Sun } from "lucide-react";
+import { useTheme } from "@teispace/next-themes";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -7,9 +11,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useTheme } from "@/components/ThemeProvider";
 
-export function ThemeToggle() {
+export function ModeToggle() {
   const { setTheme } = useTheme();
 
   return (
