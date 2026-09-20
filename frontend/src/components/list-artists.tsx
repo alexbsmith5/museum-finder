@@ -1,23 +1,27 @@
 "use client";
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Separator } from "@/components/ui/separator";
+import { fetchSearch, type Search } from "@/lib/utils";
 
 interface ListProps {
   searchTerm: string;
 }
 
 function ListArtists({ searchTerm }: ListProps) {
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState<Search[]>([]);
 
   useEffect(() => {
-    axios
-      .get(`/api/search?name=${searchTerm}`)
-      .then((response) => {
-        setItems(response.data.search);
+    if (!searchTerm) {
+      setItems([]);
+      return;
+    }
+
+    fetchSearch(searchTerm)
+      .then((data) => {
+        setItems(data);
       })
       .catch((error) => {
-        console.error("Error fetching users:", error);
+        console.log("Error fetching artists: ", error);
       });
   }, [searchTerm]);
 
