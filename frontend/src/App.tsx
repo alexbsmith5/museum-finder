@@ -3,6 +3,9 @@ import SearchBar from "@/components/search-bar";
 import SearchResults from "@/components/search-results";
 import fetchSearchResults from "@/lib/api";
 import type { SearchResultItem } from "@/lib/types/search";
+import ThemeToggle from "@/components/theme-toggle";
+import { ThemeProvider } from "@/components/theme-provider";
+
 import "./App.css";
 
 function App() {
@@ -25,11 +28,15 @@ function App() {
   };
 
   return (
-    <div className="max-w-xl mx-auto p-6 space-y-4">
-      <SearchBar onSearch={handleSearch} isLoading={isLoading} />
-      {error && <p className="text-sm text-destructive">{error}</p>}
-      <SearchResults results={results} />
-    </div>
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      <ThemeToggle />
+
+      <div className="max-w-xl mx-auto p-6 space-y-4">
+        <SearchBar onSearch={handleSearch} isLoading={isLoading} />
+        {error && <p className="text-sm text-destructive">{error}</p>}
+        <SearchResults results={results} />
+      </div>
+    </ThemeProvider>
   );
 }
 
